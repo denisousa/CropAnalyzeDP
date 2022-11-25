@@ -1,6 +1,6 @@
 
 patterns = [
-    #'factory',
+    'factory',
     'factory.*method',
     'abstract.*factory',
     'builder',
