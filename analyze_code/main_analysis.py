@@ -1,0 +1,37 @@
+from patterns_name import patterns
+import pandas as pd
+import re
+import os
+
+patterns_join = '|'.join(patterns)
+regex = f'({patterns_join})'
+columns_df = ['project', 'match_by_line', 'match_count', 'number_lines','filename', 'path_filename']
+
+all_crop_projects = ['jgit', 'egit', 'couchbase-jvm-core', 'org.eclipse.linuxtools', 'spymemcached', 'eclipse.platform.ui', 'couchbase-java-client'] 
+code_match_df = pd.DataFrame(columns=columns_df)
+
+for project in all_crop_projects:
+    crop_repos_path = f'/home/denis/projects/crop/git_repos/{project}'
+    print(f'\nANALYZE DESIGN PATTERNS IN CODE IN "{project}"\n')
+    for folder_path in os.walk(crop_repos_path):
+        for filename in folder_path[2]:
+            if '.java' in filename:
+                filename_path = f'{folder_path[0]}/{filename}'
+                try:
+                    code_lines = open(filename_path, 'r', encoding='utf-8').readlines()
+                except:
+                    code_lines = open(filename_path, 'rb').readlines()
+                    code_lines = [str(line) for line in code_lines]
+                result = []
+                lines = []
+                for i,line in enumerate(code_lines):
+                    new_result = re.findall(regex, line, re.IGNORECASE)
+                    if len(new_result) > 0:
+                        result.append(new_result)
+                        lines.append(i+1)
+                match_count = len(result)
+                if len(result) > 0:
+                    row = [[project, str(result), match_count, str(lines), filename, filename_path]]
+                    code_match_df = code_match_df.append(pd.DataFrame(row, columns=columns_df),ignore_index=True)
+
+code_match_df.to_csv(f'code_match.csv', index=False)

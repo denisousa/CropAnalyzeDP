@@ -1,0 +1,48 @@
+clean code: 0
+
+REGEX: test
+TOTAL (GERAL):  58490
+TOTAL (TITLE):  20347
+TOTAL (DESCRIPTION):  33655
+TOTAL (COMMENTS):  21681
+
+REGEX: (thread|parallel|competition)
+TOTAL (GERAL):  12295
+TOTAL (TITLE):  1318
+TOTAL (DESCRIPTION):  3732
+TOTAL (COMMENTS):  8990
+
+REGEX: thread
+TOTAL (GERAL):  11801
+TOTAL (TITLE):  1106
+TOTAL (DESCRIPTION):  3444
+TOTAL (COMMENTS):  8910
+
+REGEX: (polymorphism|encapsulation|inheritance)
+TOTAL (GERAL):  95
+TOTAL (TITLE):  5
+TOTAL (DESCRIPTION):  62
+TOTAL (COMMENTS):  29
+
+REGEX: (oop|object|oriented|programming|polymorphism|encapsulation|inheritance)
+TOTAL (GERAL):  7687
+TOTAL (TITLE):  1819
+TOTAL (DESCRIPTION):  4928
+TOTAL (COMMENTS):  2236
+
+REGEX: (error|exception)
+TOTAL (GERAL):  14580
+TOTAL (TITLE):  5568
+TOTAL (DESCRIPTION):  6457
+TOTAL (COMMENTS):  5001
+
+REGEX: (documentation|documents|docs)
+TOTAL (GERAL):  3929
+TOTAL (TITLE):  1471
+TOTAL (DESCRIPTION):  1894
+TOTAL (COMMENTS):  914
+
+<ALL ERRORS IN JAVA>
+<ALL ERRORS IN PYTHON>
+--------------------------------------------------------------------------------
+análise de sentimentos nas discussões?
