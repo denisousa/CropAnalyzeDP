@@ -54,6 +54,6 @@ for project in all_crop_projects:
         'amount_design_pattern_words': OrderedDict(sorted(amount_design_pattern_words.items(), key=itemgetter(1), reverse=True))
     })
 
-with open("analyze_code_match.json", "w") as outfile:
+with open("code_match.json", "w") as outfile:
     json.dump(analyze_project_list, outfile, indent=4)
 code_match_df.to_csv(f'code_match.csv', index=False)

@@ -14,12 +14,15 @@ all_crop_projects = ['jgit', 'egit', 'couchbase-jvm-core', 'org.eclipse.linuxtoo
 code_match_df = pd.DataFrame(columns=columns_df)
 analyze_project_list = []
 
+project_by_filename = {}
+
 for project in all_crop_projects:
     crop_repos_path = f'C:\\Users\\Denis\\programming\\crop-git-repos\\git_repos\\{project}'
     print(f'\nANALYZE DESIGN PATTERNS IN CODE IN "{project}"\n')
 
     count_dp = 0
     amount_design_pattern_words = []
+    project_by_filename[project] = []
 
     for folder_path in os.walk(crop_repos_path):
         for filename in folder_path[2]:
@@ -28,6 +31,7 @@ for project in all_crop_projects:
                 result = re.findall(regex, filename, re.IGNORECASE)
                 match_count = len(result)
                 if len(result) > 0:
+                    project_by_filename[project].append(filename_path.split('git_repos')[-1])
                     count_dp += 1
                     row = [[project, str(result), match_count, filename, filename_path.split('crop/')[-1]]]
                     code_match_df = code_match_df.append(pd.DataFrame(row, columns=columns_df),ignore_index=True)
@@ -43,6 +47,10 @@ for project in all_crop_projects:
         'amount_design_pattern_words': OrderedDict(sorted(amount_design_pattern_words.items(), key=itemgetter(1), reverse=True))
     })
 
-with open("analyze_filename_match.json", "w") as outfile:
+with open("filename_match.json", "w") as outfile:
     json.dump(analyze_project_list, outfile, indent=4)
+
+with open("DP_by_files.json", "w") as outfile:
+    json.dump(project_by_filename, outfile, indent=4)
+
 code_match_df.to_csv(f'filename_match.csv', index=False)
