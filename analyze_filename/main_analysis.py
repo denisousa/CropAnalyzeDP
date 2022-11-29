@@ -15,7 +15,7 @@ code_match_df = pd.DataFrame(columns=columns_df)
 analyze_project_list = []
 
 for project in all_crop_projects:
-    crop_repos_path = f'/home/denis/projects/crop/git_repos/{project}'
+    crop_repos_path = f'C:\\Users\\Denis\\programming\\crop-git-repos\\git_repos\\{project}'
     print(f'\nANALYZE DESIGN PATTERNS IN CODE IN "{project}"\n')
 
     count_dp = 0
@@ -24,11 +24,11 @@ for project in all_crop_projects:
     for folder_path in os.walk(crop_repos_path):
         for filename in folder_path[2]:
             if '.java' in filename:
-                count_dp += 1
                 filename_path = f'{folder_path[0]}/{filename}'
                 result = re.findall(regex, filename, re.IGNORECASE)
                 match_count = len(result)
                 if len(result) > 0:
+                    count_dp += 1
                     row = [[project, str(result), match_count, filename, filename_path.split('crop/')[-1]]]
                     code_match_df = code_match_df.append(pd.DataFrame(row, columns=columns_df),ignore_index=True)
 
