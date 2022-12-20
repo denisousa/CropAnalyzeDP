@@ -1,11 +1,11 @@
 import os
 import re
-from config import crop_path
+from config import repos_path
 
 
 def detect_design_pattern(project, dp_regex):
     filename_by_project = {dp_regex: []}
-    crop_repos_path = f'{crop_path}\\{project}'
+    crop_repos_path = f'{repos_path}\\{project}'
     for folder_path in os.walk(crop_repos_path):
         for filename in folder_path[2]:
             if '.java' in filename:

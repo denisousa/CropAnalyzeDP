@@ -6,12 +6,6 @@ from datetime import datetime
 import json
 
 # CHANGE DP, EMERGENCE DP, REMOVAL DP, INCREASES DP, DECREASES DP
-
-def get_before_after(delta):
-    if 'before' in delta[0]:
-        return delta[0], delta[1]
-    return delta[1], delta[0]
-
 def get_amount(amount_analyze, rev):
     amount_analyze[rev] = {}
     for dp_analyze in analyze_result[project][revision][rev]:

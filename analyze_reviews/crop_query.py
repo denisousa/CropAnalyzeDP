@@ -1,5 +1,5 @@
 from patterns_name import patterns
-from config import crop_path, current_path
+from config import repos_path, current_path
 import pandas as pd
 import pathlib
 import re
@@ -7,7 +7,7 @@ import os
 
 
 def get_review_by_revision(project):
-    crop_repos_path = f'{crop_path}\\{project}'
+    crop_repos_path = f'{repos_path}\\{project}'
 
     git_log_filename = 'git-log.txt'
     os.system(f'cd {crop_repos_path} & git --no-pager log --all > {current_path}\\{git_log_filename}')
@@ -26,7 +26,7 @@ def get_review_by_revision(project):
     return review_by_revision
 
 def get_hash_by_commit_name(project):
-    crop_repos_path = f'{crop_path}\\{project}'
+    crop_repos_path = f'{repos_path}\\{project}'
 
     git_log_filename = 'git-log.txt'
     os.system(f'cd {crop_repos_path} & git --no-pager log --all > {current_path}\\{git_log_filename}')
