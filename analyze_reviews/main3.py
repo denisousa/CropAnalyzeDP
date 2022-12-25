@@ -13,7 +13,7 @@ import os
 print(f'CURRENT TIME: {datetime.now()}')
 start_time = time()
 # all_crop_projects = ['jgit', 'egit', 'couchbase-jvm-core', 'org.eclipse.linuxtools', 'spymemcached', 'eclipse.platform.ui', 'couchbase-java-client'] 
-all_crop_projects = ['jgit'] 
+all_crop_projects = ['org.eclipse.linuxtools'] 
 
 def add_review(detected_dp, project, review_number, revision, relationship, dp_regex):
     dp_project = detect_design_pattern(project, dp_regex)

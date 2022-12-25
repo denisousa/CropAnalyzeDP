@@ -25,6 +25,7 @@ def partition(lst, n):
     return [ lst[int(round(division * i)): int(round(division * (i + 1)))] for i in range(n) ]
 
 detected_dp = {}
+continue_partition = 18 # last file is 29_****
 for project in all_crop_projects:
     crop_repos_path = f'{repos_path}\\{project}'
     crop_metadata_path = f'{metadata_path}\\{project}'
@@ -37,7 +38,8 @@ for project in all_crop_projects:
     review_number_partition_list = partition(review_number_list, 100)
     
     detected_dp = {project: {}}
-    for i, review_number_partition in enumerate(review_number_partition_list):
+    for i, review_number_partition in enumerate(review_number_partition_list[continue_partition:]):
+        i += continue_partition
         for review_number in review_number_partition:
             code_review_rows = metada_df.loc[metada_df['review_number'] == review_number]
             review_number = str(review_number)
