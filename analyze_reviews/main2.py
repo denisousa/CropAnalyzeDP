@@ -13,7 +13,7 @@ import os
 print(f'CURRENT TIME: {datetime.now()}')
 start_time = time()
 # all_crop_projects = ['jgit', 'egit', 'couchbase-jvm-core', 'org.eclipse.linuxtools', 'spymemcached', 'eclipse.platform.ui', 'couchbase-java-client'] 
-all_crop_projects = ['jgit'] 
+all_crop_projects = ['spymemcached'] 
 
 def add_review(detected_dp, project, review_number, revision, relationship, dp_regex):
     dp_project = detect_design_pattern(project, dp_regex)
@@ -47,8 +47,8 @@ for project in all_crop_projects:
                 current_commit = row['after_commit_id']
                 detected_dp[project][review_number][revision] = {}
 
-                commit_name_path = f'{current_path}\\commit-name.txt'
-                os.system(f'cd {crop_repos_path} & git checkout --force {father_commit} & git log -1 --pretty=%B > {current_path}\\commit-name.txt')
+                commit_name_path = f'{current_path}\\{project}-commit-name.txt'
+                os.system(f'cd {crop_repos_path} & git checkout --force {father_commit} & git log -1 --pretty=%B > {commit_name_path}')
                 father_revision = re.sub('\s+', '', open(commit_name_path, 'r').read().split(' ')[-1])
                 detected_dp[project][review_number][revision][father_revision] = []
                 [add_review(detected_dp, project, review_number, revision, father_revision, dp_regex) for dp_regex in patterns]
